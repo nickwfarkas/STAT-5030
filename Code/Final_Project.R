@@ -17,8 +17,6 @@ colnames(SRS.twoparty.property) <- c("year","state_abbr","crime_per_person","par
 
 years <- c((1979:2020))
 
-#If p-value is less than .05 we can not assume normality
-
 shapiroTests <- function(SRS.tp,yrs)
 {
   shapiro.p.values <- numeric(length(yrs))
@@ -86,8 +84,6 @@ plot(years,wilcoxon.p.values.property,xlab = "Year",ylab = "P-Value")
 title("Wilcoxon Rank Sum Test on Property Crime by year")
 abline(h=.05, col="red")
 dev.off()
-
-#Compare P-values of models and see if there is a significant difference
 
 Violent.model.withoutParty <- lm(formula= crime_per_person~year+state_abbr, data= SRS.twoparty.violent)
 Violent.model.withParty <- lm(formula= crime_per_person~year+state_abbr+party, data= SRS.twoparty.violent)
